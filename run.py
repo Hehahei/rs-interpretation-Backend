@@ -4,8 +4,6 @@ from logging.handlers import TimedRotatingFileHandler
 from config import PORT, LOG_PATH
 
 
-if not os.path.exists(LOG_PATH):
-        os.mkdir(LOG_PATH)
 
 app.logger.setLevel(logging.INFO)
 formatter = logging.Formatter(
