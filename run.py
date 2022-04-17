@@ -1,4 +1,19 @@
 from app import app
+import logging
+from logging.handlers import TimedRotatingFileHandler
 from config import PORT
 
+
+app.logger.setLevel(logging.INFO)
+formatter = logging.Formatter(
+        "[%(asctime)s]-[%(module)s:%(lineno)d]-[%(levelname)s]-[%(thread)d] - %(message)s")
+handler = TimedRotatingFileHandler("flask.log", when="D", interval=1, backupCount=15,
+        encoding="UTF-8", delay=False, utc=True)
+handler.setLevel(logging.INFO)
+
+handler.setFormatter(formatter)
+app.logger.addHandler(handler)
+
+app.logger.info("加载配置完成，开始启动程序...")
 app.run(host='0.0.0.0', port=PORT, debug=False)
+app.logger.info("启动成功！端口:{}".format(PORT))
