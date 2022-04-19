@@ -1,7 +1,7 @@
 from flask import Blueprint, request, current_app
 from flask_cors import cross_origin
 from config import baseDir, UPLOAD_FOLDER
-import os, time
+import os, time, base64
 
 classify = Blueprint('classify', __name__, url_prefix='/classify')
 
@@ -38,7 +38,11 @@ def predict():
 
         current_app.logger.info("模型预测成功！时间：{}；结果文件名：{}".format(t, ""))
 
-        result = {"time": round(t, 2), "fileName": "", "data": ""}
+        resultFileName = ""
+        resultFile = open(os.path.join(fileDir, resultFileName), 'rb')
+        base64Data = base64.b64encode(resultFile.read())
+
+        result = {"time": round(t, 2), "fileName": "", "data": str(base64Data, encoding='utf-8')}
         return {'success': True, 'msg': '模型预测成功！', 'result': result}
     except Exception as e:
         current_app.logger.error("模型预测失败，{}".format(e))
