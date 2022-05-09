@@ -8,11 +8,11 @@ extraction = Blueprint('extraction', __name__, url_prefix='/extraction')
 fileDir = os.path.join(baseDir, UPLOAD_FOLDER)
 
 
-# 变化检测预测
+# 目标提取预测
 @extraction.route('/predict', methods=['POST'])
 @cross_origin(supports_credentials=True)
 def predict():
-    current_app.logger.info("调用 变化检测预测 接口，ip:{}，method:{}".format(request.referrer, request.method))
+    current_app.logger.info("调用 目标提取预测 接口，ip:{}，method:{}".format(request.referrer, request.method))
 
     fileName = request.json.get("fileName")
 
