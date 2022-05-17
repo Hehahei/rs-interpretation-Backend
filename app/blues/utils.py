@@ -1,6 +1,6 @@
 from flask import Blueprint, request, make_response, send_from_directory, current_app
 from flask_cors import cross_origin
-from config import baseDir, UPLOAD_FOLDER
+from config import baseDir, UPLOAD_FOLDER, REULTS_FOLDER
 import os, uuid
 
 util = Blueprint('utils', __name__, url_prefix="/utils")
@@ -44,11 +44,11 @@ def download():
 
     current_app.logger.info("fileName:{}".format(fileName))
     try:
-        file = os.path.join(fileDir, fileName)
+        file = os.path.join(REULTS_FOLDER, fileName)
         if not os.path.exists(file):
             current_app.logger.warning("文件不存在！")
             return {'success': False, 'msg': '文件不存在！'}
-        response = make_response(send_from_directory(fileDir, fileName, as_attachment=True))
+        response = make_response(send_from_directory(REULTS_FOLDER, fileName, as_attachment=True))
         response.headers["Content-Disposition"] = "attachment; filename={}".format(fileName)
         current_app.logger.info("导出成功！")
         return response
