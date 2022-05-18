@@ -10,7 +10,7 @@ from PIL import Image
 import paddlers as pdrs
 import sys
 import os, uuid
-from utils_preprocess import object_detection_show,style_transfer
+from .utils_preprocess import object_detection_show,style_transfer
 from config import REULTS_FOLDER, OD_MODEL, OE_MODEL, TC_MODEL, CD_MODEL
 
 
