@@ -2,7 +2,7 @@ from flask import Blueprint, request, current_app
 from flask_cors import cross_origin
 from config import baseDir, UPLOAD_FOLDER, REULTS_FOLDER
 import os, time, base64
-from predict.infer_app import infer_object_extraction
+# from predict.infer_app import infer_object_extraction
 
 extraction = Blueprint('extraction', __name__, url_prefix='/extraction')
 
