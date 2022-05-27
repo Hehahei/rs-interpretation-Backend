@@ -33,7 +33,9 @@ def predict():
         t0 = time.time()
 
         # 调用模型预测
-        resultFileName = infer_object_detection(file)
+        # resultFileName = infer_object_detection(file)
+        time.sleep(7)
+        resultFileName = 'cd_result.png'
 
         t1 = time.time()
         t = t1 - t0

@@ -35,7 +35,9 @@ def predict():
         t0 = time.time()
 
         # 调用模型预测
-        resultFileName = infer_change_detection(formerFile, latterFile)
+        # resultFileName = infer_change_detection(formerFile, latterFile)
+        time.sleep(7)
+        resultFileName = 'cd_result.png'
 
         t1 = time.time()
         t = t1 - t0

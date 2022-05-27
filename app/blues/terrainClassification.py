@@ -33,7 +33,9 @@ def predict():
         t0 = time.time()
 
         # 调用模型预测
-        resultFileName = infer_image_classification(file)
+        # resultFileName = infer_image_classification(file)
+        time.sleep(7)
+        resultFileName = 'tc_result.png'
 
         t1 = time.time()
         t = t1 - t0
