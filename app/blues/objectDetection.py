@@ -2,6 +2,7 @@ from flask import Blueprint, request, current_app
 from flask_cors import cross_origin
 from config import baseDir, UPLOAD_FOLDER, REULTS_FOLDER
 import os, time, base64
+from ..utils.utils import decodeImage
 # from predict.infer_app import infer_object_detection
 
 detection = Blueprint('detection', __name__, url_prefix='/detection')
@@ -18,8 +19,12 @@ def predict():
     fileName = request.json.get("fileName")
 
     if fileName is None:
-        current_app.logger.warning("参数错误...")
-        return {'success': False, 'msg': '参数错误！'}
+        imageData = request.json.get("imageData")
+        if imageData is None:
+            current_app.logger.warning("参数错误...")
+            return {'success': False, 'msg': '参数错误！'}
+        else:
+            fileName = decodeImage(imageData)
 
     current_app.logger.info("fileName:{}".format(fileName))
 
