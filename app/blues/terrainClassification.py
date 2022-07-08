@@ -3,7 +3,7 @@ from flask_cors import cross_origin
 from config import baseDir, UPLOAD_FOLDER, REULTS_FOLDER
 import os, time, base64
 from ..utils.utils import decodeImage
-# from predict.infer_app import infer_image_classification
+from predict.infer_app import infer_image_classification
 
 classify = Blueprint('classify', __name__, url_prefix='/classify')
 
@@ -38,9 +38,9 @@ def predict():
         t0 = time.time()
 
         # 调用模型预测
-        # resultFileName = infer_image_classification(file)
-        time.sleep(7)
-        resultFileName = 'tc_result.png'
+        resultFileName = infer_image_classification(file)
+        # time.sleep(7)
+        # resultFileName = 'tc_result.png'
 
         t1 = time.time()
         t = t1 - t0

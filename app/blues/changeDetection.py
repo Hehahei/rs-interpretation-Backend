@@ -2,7 +2,7 @@ from flask import Blueprint, request, current_app
 from flask_cors import cross_origin
 from config import baseDir, UPLOAD_FOLDER, REULTS_FOLDER
 import os, time, base64
-# from predict.infer_app import infer_change_detection
+from predict.infer_app import infer_change_detection
 
 change = Blueprint('change', __name__, url_prefix='/change')
 
@@ -35,9 +35,9 @@ def predict():
         t0 = time.time()
 
         # 调用模型预测
-        # resultFileName = infer_change_detection(formerFile, latterFile)
-        time.sleep(7)
-        resultFileName = 'cd_result.png'
+        resultFileName = infer_change_detection(formerFile, latterFile)
+        # time.sleep(7)
+        # resultFileName = 'cd_result.png'
 
         t1 = time.time()
         t = t1 - t0

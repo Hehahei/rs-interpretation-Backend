@@ -3,7 +3,7 @@ from flask_cors import cross_origin
 from config import baseDir, UPLOAD_FOLDER, REULTS_FOLDER
 import os, time, base64
 from ..utils.utils import decodeImage
-# from predict.infer_app import infer_object_extraction
+from predict.infer_app import infer_object_extraction
 
 extraction = Blueprint('extraction', __name__, url_prefix='/extraction')
 
@@ -38,9 +38,9 @@ def predict():
         t0 = time.time()
 
         # 调用模型预测
-        # resultFileName = infer_object_extraction(file)
-        time.sleep(7)
-        resultFileName = 'oe_result.png'
+        resultFileName = infer_object_extraction(file)
+        # time.sleep(7)
+        # resultFileName = 'oe_result.png'
 
         t1 = time.time()
         t = t1 - t0
